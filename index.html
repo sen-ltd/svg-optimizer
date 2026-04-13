@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVG Optimizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <h1 class="app-title">SVG Optimizer</h1>
+      <p class="app-subtitle">Client-side SVG optimization tool</p>
+    </div>
+    <div class="header-right">
+      <button id="lang-toggle" class="btn btn-ghost" title="Toggle language">JA</button>
+      <button id="theme-toggle" class="btn btn-ghost" title="Toggle theme">Dark</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <!-- Options sidebar -->
+    <aside class="sidebar">
+      <h2 class="options-title">Optimization Options</h2>
+      <ul class="options-list">
+        <li>
+          <label for="opt-removeComments">
+            <input type="checkbox" id="opt-removeComments" checked />
+            Remove comments
+          </label>
+        </li>
+        <li>
+          <label for="opt-removeXMLDeclaration">
+            <input type="checkbox" id="opt-removeXMLDeclaration" checked />
+            Remove XML declaration
+          </label>
+        </li>
+        <li>
+          <label for="opt-removeDoctype">
+            <input type="checkbox" id="opt-removeDoctype" checked />
+            Remove DOCTYPE
+          </label>
+        </li>
+        <li>
+          <label for="opt-collapseWhitespace">
+            <input type="checkbox" id="opt-collapseWhitespace" checked />
+            Collapse whitespace
+          </label>
+        </li>
+        <li>
+          <label for="opt-removeEmptyAttrs">
+            <input type="checkbox" id="opt-removeEmptyAttrs" checked />
+            Remove empty attributes
+          </label>
+        </li>
+        <li>
+          <label for="opt-removeDefaultAttrs">
+            <input type="checkbox" id="opt-removeDefaultAttrs" checked />
+            Remove default attribute values
+          </label>
+        </li>
+        <li class="option-group">
+          <label for="opt-roundNumbers">
+            <input type="checkbox" id="opt-roundNumbers" checked />
+            Round numbers
+          </label>
+          <label for="opt-roundDecimals" class="indent-label">
+            Decimal places: <input type="number" id="opt-roundDecimals" value="2" min="0" max="8" />
+          </label>
+        </li>
+        <li>
+          <label for="opt-removeMetadata">
+            <input type="checkbox" id="opt-removeMetadata" checked />
+            Remove metadata / title / desc
+          </label>
+        </li>
+        <li>
+          <label for="opt-removeEditorIds">
+            <input type="checkbox" id="opt-removeEditorIds" checked />
+            Remove editor IDs (Sketch / Figma / Inkscape)
+          </label>
+        </li>
+        <li>
+          <label for="opt-removeUnusedNamespaces">
+            <input type="checkbox" id="opt-removeUnusedNamespaces" checked />
+            Remove unused namespaces
+          </label>
+        </li>
+        <li>
+          <label for="opt-minify">
+            <input type="checkbox" id="opt-minify" />
+            Final minify pass
+          </label>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main editor area -->
+    <div class="editor-area">
+      <div id="drop-zone" class="drop-zone">
+        <div class="panes">
+          <!-- Input pane -->
+          <div class="pane pane-input">
+            <div class="pane-header">
+              <span data-label="input">SVG Input</span>
+              <div class="pane-actions">
+                <button id="upload-btn" class="btn btn-sm">Choose File</button>
+                <button id="clear-btn" class="btn btn-sm btn-ghost">Clear</button>
+              </div>
+            </div>
+            <textarea
+              id="input-area"
+              class="code-area"
+              placeholder="Paste SVG here or drop a file"
+              spellcheck="false"
+            ></textarea>
+            <input type="file" id="file-input" accept=".svg,image/svg+xml" hidden />
+          </div>
+
+          <div class="pane-divider"></div>
+
+          <!-- Output pane -->
+          <div class="pane pane-output">
+            <div class="pane-header">
+              <span data-label="output">Optimized</span>
+              <div class="pane-actions">
+                <button id="copy-btn" class="btn btn-sm" disabled>Copy</button>
+                <button id="download-btn" class="btn btn-sm btn-primary" disabled>Download</button>
+              </div>
+            </div>
+            <textarea
+              id="output-area"
+              class="code-area"
+              readonly
+              placeholder=""
+              spellcheck="false"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="drop-hint">Drag &amp; drop SVG file here</div>
+      </div>
+
+      <!-- Stats bar -->
+      <div id="stats-bar" class="stats-bar hidden"></div>
+
+      <!-- Optimize button -->
+      <div class="action-bar">
+        <button id="optimize-btn" class="btn btn-primary btn-lg">Optimize</button>
+      </div>
+
+      <!-- Preview section -->
+      <section class="preview-section">
+        <h2 data-section="preview">Preview</h2>
+        <div class="preview-panes">
+          <div class="preview-pane">
+            <div class="preview-label" data-section="stats">Original</div>
+            <div id="preview-original" class="preview-box"></div>
+          </div>
+          <div class="preview-pane">
+            <div class="preview-label">Optimized</div>
+            <div id="preview-optimized" class="preview-box"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>SVG Optimizer — <a href="https://github.com/sen-ltd/svg-optimizer" target="_blank" rel="noopener">GitHub</a></p>
+  </footer>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
