@@ -95,3 +95,10 @@ console.log(`Saved ${stats.savedPercent}%`);
 ## License
 
 MIT © 2026 SEN LLC (SEN 合同会社)
+
+<!-- sen-publish:links -->
+## Links
+
+- 🌐 Demo: https://sen.ltd/portfolio/svg-optimizer/
+- 📝 dev.to: https://dev.to/sendotltd/a-client-side-svg-optimizer-that-never-sends-your-files-anywhere-4pad
+<!-- /sen-publish:links -->
